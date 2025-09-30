@@ -116,6 +116,7 @@ final class NIOLoopBoundTests: XCTestCase {
         XCTAssertTrue(loopBoundBox.value.mutateInPlace())
     }
 
+    #if compiler(>=6.0)
     func testWithValue() {
         var expectedValue = 0
         let loopBound = NIOLoopBoundBox(expectedValue, eventLoop: loop)
@@ -143,6 +144,7 @@ final class NIOLoopBoundTests: XCTestCase {
 
         XCTAssertEqual(10, loopBound.value, "Ensure value is set even if we throw")
     }
+    #endif
 
     // MARK: - Helpers
     func sendableBlackhole<S: Sendable>(_ sendableThing: S) {}
